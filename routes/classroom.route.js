@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const classroomController = require('../controllers/classroom.controller');
+const controller = require('../controllers/classroom.controller');
+const checkSession = require("../middlewares/checkSession");
 
-router.get('/', classroomController.getAllClassrooms);
-router.get('/detail/:id', classroomController.getClassroomById);
-router.post('/create-classroom', classroomController.createClassroom);
-router.patch('/edit/:id', classroomController.updateClassroom);
-router.delete('/:id', classroomController.deleteClassroom);
+router.post('/', checkSession, controller.getAllClassrooms);
+router.get('/detail/:id', controller.getClassroomById);
+router.post('/create-classroom', controller.createClassroom);
+router.patch('/edit/:id', controller.updateClassroom);
+router.delete('/:id', controller.deleteClassroom);
 module.exports = router;

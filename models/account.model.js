@@ -18,11 +18,10 @@ async function createAccount(account) {
     const pool = await poolPromise;
     const result = await pool.request()
         .input('username', sql.VarChar, account.username)
-        .input('session_id', sql.VarChar, account.session_id)
         .input('type', sql.VarChar, account.type)
         .input('full_name', sql.VarChar, account.full_name)
         .input('password', sql.VarChar, account.password)
-        .query('INSERT INTO Account (username, session_id, type, full_name, password) VALUES (@username, @session_id, @type, @full_name, @password)');
+        .query('INSERT INTO Account (username, type, full_name, password) VALUES (@username, @type, @full_name, @password)');
     return result.recordset;
 }
 
